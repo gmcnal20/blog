@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Scatter Plots</title>
+        <style>
+
+    html body {
+        font-family: Raleway, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.27.1" />
+        
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Scatter Plots</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:%20gmcnal20@lakers.mercyhurst.edu"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/gmcnal20/"><i class="fa fa-github"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/scatter-plots/">Scatter Plots</a></h4>
+    <h5>September 21, 2017</h5>
+     <kbd class="item-tag">scatter plot</kbd> 
+
+</div>
+
+
+    <br> <div class="text-justify"><pre class="r"><code>library(ggplot2)</code></pre>
+<p>Let’s generate some random points:</p>
+<pre class="r"><code>x&lt;-rnorm(100,5,2)
+y&lt;-rnorm(100,2*x+1,2)
+
+x</code></pre>
+<pre><code>##   [1] 6.04754158 4.99588901 4.09255609 0.09240983 6.98447427 3.52459865
+##   [7] 6.38837786 6.94356701 1.99823010 2.57517377 0.52062379 3.46771974
+##  [13] 6.45236243 3.56485758 5.00264983 7.49255779 4.89556503 4.70101471
+##  [19] 2.14491202 5.17153557 3.75206092 0.18448434 2.55395853 5.59132500
+##  [25] 4.44707188 4.10359047 3.14683375 7.21253827 4.05618342 5.65865795
+##  [31] 3.10104580 7.66795104 4.28136953 8.22142475 8.67910588 6.01347498
+##  [37] 7.00230083 8.76260058 2.75706460 4.04775930 1.22492806 4.32665087
+##  [43] 3.95413018 5.29845224 8.76710911 5.12197737 4.68192598 4.69105528
+##  [49] 5.47566220 3.90229912 7.02829378 3.13664401 8.19149536 5.27639281
+##  [55] 4.22954942 2.98604566 5.53319355 0.12645851 4.33317071 4.47545909
+##  [61] 7.15364565 4.22132584 5.37563365 5.30091044 5.14409996 9.51383413
+##  [67] 5.67044755 3.96386996 2.28353610 3.94765720 3.11250253 4.23478839
+##  [73] 8.05416470 4.03171978 2.47142612 5.56957234 6.10111211 3.66313495
+##  [79] 4.18563956 3.59880348 8.15970090 2.33278655 7.45276188 6.29596489
+##  [85] 6.22695142 4.85483026 6.87666716 5.67482895 5.24008723 4.05354951
+##  [91] 8.19140965 3.02768329 8.87242184 3.55096793 1.44337620 1.79738731
+##  [97] 6.13148325 3.50266252 4.43982183 8.83081681</code></pre>
+<pre class="r"><code>y</code></pre>
+<pre><code>##   [1] 13.69814799  7.33432734  9.49481226  1.76368695 12.33497611
+##   [6] 11.27054080 15.49470056 12.17056906  3.06442882  7.02381577
+##  [11] -0.03385279  8.71842755 14.12275955  6.30199935  6.78010442
+##  [16] 15.26513226 12.03999397 13.43926492  5.54463803  8.68370974
+##  [21]  5.88607264 -0.78278395  8.97218903 12.64073107 14.38130521
+##  [26]  9.02072144  5.80756879 15.69849834  8.00493487 12.91755582
+##  [31]  6.96048547 14.58107879  9.83514614 17.41093262 20.04422736
+##  [36] 12.80175015 10.50304925 16.90981820  8.11706555  9.15218089
+##  [41]  4.49627420 10.18763302  6.42719275 13.06026891 18.32672423
+##  [46] 14.52350077  8.87616850 10.16684570 10.44747078 13.66041372
+##  [51] 14.68151783  4.85674266 18.37577087 13.76497944  9.44617520
+##  [56]  4.46664102  8.54442485 -1.22675934  8.50043683  9.07448172
+##  [61] 16.19611417 10.64420461 13.87544821  9.92024166 11.62468959
+##  [66] 22.49283098 15.17286830  7.61558253  4.63974269 10.65383571
+##  [71]  4.58482235 13.70806196 19.14926427  6.79928410  6.72975345
+##  [76] 11.55755652 13.43916115  7.20328000 10.80166145  9.66073590
+##  [81] 17.65243130  6.53016150 18.23532309 12.74973175 16.90801697
+##  [86] 12.19425520 14.34764032 15.79682680  9.99546144 11.02312643
+##  [91] 20.13189747  9.74140547 19.53640041 12.33967802  1.74190983
+##  [96]  6.93631631 12.08516697  7.52922527 10.64438024 24.00754934</code></pre>
+<p>Now let’s make a data frame:</p>
+<pre class="r"><code>df&lt;-data.frame(x,y)
+
+df</code></pre>
+<pre><code>##              x           y
+## 1   6.04754158 13.69814799
+## 2   4.99588901  7.33432734
+## 3   4.09255609  9.49481226
+## 4   0.09240983  1.76368695
+## 5   6.98447427 12.33497611
+## 6   3.52459865 11.27054080
+## 7   6.38837786 15.49470056
+## 8   6.94356701 12.17056906
+## 9   1.99823010  3.06442882
+## 10  2.57517377  7.02381577
+## 11  0.52062379 -0.03385279
+## 12  3.46771974  8.71842755
+## 13  6.45236243 14.12275955
+## 14  3.56485758  6.30199935
+## 15  5.00264983  6.78010442
+## 16  7.49255779 15.26513226
+## 17  4.89556503 12.03999397
+## 18  4.70101471 13.43926492
+## 19  2.14491202  5.54463803
+## 20  5.17153557  8.68370974
+## 21  3.75206092  5.88607264
+## 22  0.18448434 -0.78278395
+## 23  2.55395853  8.97218903
+## 24  5.59132500 12.64073107
+## 25  4.44707188 14.38130521
+## 26  4.10359047  9.02072144
+## 27  3.14683375  5.80756879
+## 28  7.21253827 15.69849834
+## 29  4.05618342  8.00493487
+## 30  5.65865795 12.91755582
+## 31  3.10104580  6.96048547
+## 32  7.66795104 14.58107879
+## 33  4.28136953  9.83514614
+## 34  8.22142475 17.41093262
+## 35  8.67910588 20.04422736
+## 36  6.01347498 12.80175015
+## 37  7.00230083 10.50304925
+## 38  8.76260058 16.90981820
+## 39  2.75706460  8.11706555
+## 40  4.04775930  9.15218089
+## 41  1.22492806  4.49627420
+## 42  4.32665087 10.18763302
+## 43  3.95413018  6.42719275
+## 44  5.29845224 13.06026891
+## 45  8.76710911 18.32672423
+## 46  5.12197737 14.52350077
+## 47  4.68192598  8.87616850
+## 48  4.69105528 10.16684570
+## 49  5.47566220 10.44747078
+## 50  3.90229912 13.66041372
+## 51  7.02829378 14.68151783
+## 52  3.13664401  4.85674266
+## 53  8.19149536 18.37577087
+## 54  5.27639281 13.76497944
+## 55  4.22954942  9.44617520
+## 56  2.98604566  4.46664102
+## 57  5.53319355  8.54442485
+## 58  0.12645851 -1.22675934
+## 59  4.33317071  8.50043683
+## 60  4.47545909  9.07448172
+## 61  7.15364565 16.19611417
+## 62  4.22132584 10.64420461
+## 63  5.37563365 13.87544821
+## 64  5.30091044  9.92024166
+## 65  5.14409996 11.62468959
+## 66  9.51383413 22.49283098
+## 67  5.67044755 15.17286830
+## 68  3.96386996  7.61558253
+## 69  2.28353610  4.63974269
+## 70  3.94765720 10.65383571
+## 71  3.11250253  4.58482235
+## 72  4.23478839 13.70806196
+## 73  8.05416470 19.14926427
+## 74  4.03171978  6.79928410
+## 75  2.47142612  6.72975345
+## 76  5.56957234 11.55755652
+## 77  6.10111211 13.43916115
+## 78  3.66313495  7.20328000
+## 79  4.18563956 10.80166145
+## 80  3.59880348  9.66073590
+## 81  8.15970090 17.65243130
+## 82  2.33278655  6.53016150
+## 83  7.45276188 18.23532309
+## 84  6.29596489 12.74973175
+## 85  6.22695142 16.90801697
+## 86  4.85483026 12.19425520
+## 87  6.87666716 14.34764032
+## 88  5.67482895 15.79682680
+## 89  5.24008723  9.99546144
+## 90  4.05354951 11.02312643
+## 91  8.19140965 20.13189747
+## 92  3.02768329  9.74140547
+## 93  8.87242184 19.53640041
+## 94  3.55096793 12.33967802
+## 95  1.44337620  1.74190983
+## 96  1.79738731  6.93631631
+## 97  6.13148325 12.08516697
+## 98  3.50266252  7.52922527
+## 99  4.43982183 10.64438024
+## 100 8.83081681 24.00754934</code></pre>
+<p>Finally the plot:</p>
+<pre class="r"><code>ggplot()+
+geom_point(dat=df,aes(x,y))</code></pre>
+<p><img src="/post/2017-09-21-scatter-plots_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "username" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+
+    </body>
+
+</html>
+
